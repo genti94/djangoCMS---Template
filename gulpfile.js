@@ -12,6 +12,8 @@ var gulp = require('gulp'),
 	include = require('gulp-include'),
 	plumber = require('gulp-plumber');
 	watch = require('gulp-watch');
+	postcss = require('gulp-postcss');
+	autoprefixer = require('gulp-autoprefixer');
 
 /* ---- file paths ----*/
 
@@ -38,6 +40,7 @@ var bsk = {
 gulp.task('styles', function() {
 	return gulp.src(bsk.appDir+'/'+bsk.scssDir+'/*.scss')
 		.pipe(plumber())
+		.pipe(autoprefixer())
 		.pipe(sass({style: 'compact'}))
 		.pipe(changed(bsk.appDir+'/'+bsk.scssDir+'/*.scss'))
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.cssDir))
